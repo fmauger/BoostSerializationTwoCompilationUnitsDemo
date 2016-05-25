@@ -1,6 +1,7 @@
 # Boost Serialization with Two Compilation Units
 
-A Demo With C++ classes from two compilation units (shared libraries) with Boost/Serialization support:
+A demo with C++ classes  from two compilation units (shared libraries)
+with Boost/Serialization support:
 
 * Author:      F.Mauger
 * Affiliation: Université de Caen Normandie, LPC Caen (CNRS/IN2P3)
@@ -10,12 +11,18 @@ A Demo With C++ classes from two compilation units (shared libraries) with Boost
 
 ## Introduction
 
-This set  of sample  C++ files illustrates  how to  give serialization
-functionalities, through  the Boost/Serialization library,  to several
-(simple)  classes defined  from two  shared libraries.   The libraries
-contain the instantiated templatized code for serialization of classes
-for  several types  of Boost  archives as  well as  class registration
-(*export*) code.  Two use cases are considered:
+This  set   of  sample   C++  files   illustrates  how   to  implement
+serialization   functionalities,   through   the   Boost/Serialization
+library,  in   several  (simple)  classes  defined   from  two  shared
+libraries,  one depending  on  the other.   The libraries  instantiate
+dedicated templatized  code for  serialization of classes  for several
+types  of Boost  archives  as well  as  class registration  (*export*)
+mechanism                                                         (see
+the [Boost/Serialization documentation]
+(http://www.boost.org/doc/libs/1_61_0/libs/serialization/doc/index.html)
+for details).
+
+Two use cases are considered:
 
 1)  Simple class  ``xy::Y``  with an  attribute  (composition) of  the
    simpler class  ``xy::X`` in the  first library.  Class  ``z::Z`` in
@@ -35,9 +42,9 @@ for  several types  of Boost  archives as  well as  class registration
     +-----------------+
     | x : xy::X       |
     +-----------------+
-                                First shared lib
+                        First shared lib (libXY)
     --------------------------------------------
-                               Second shared lib
+                        Second shared lib (libZ)
     +-----------------+
     |      z::Z       |
     +-----------------+
@@ -59,7 +66,7 @@ for  several types  of Boost  archives as  well as  class registration
     | /to_string/     |
     +-----------------+
             ^
-            | inheritance
+inheritance |
             |
     +-----------------+
     |    /xy::B/      |
@@ -69,9 +76,10 @@ for  several types  of Boost  archives as  well as  class registration
     | /to_string/     |
     +-----------------+
             ^
-            | inheritance       First shared lib
+            |           First shared lib (libXY)
     --------|-----------------------------------
-            |                  Second shared lib
+            |           Second shared lib (libZ)
+inheritance |
     +-----------------+
     |    /z::C/       |
     +-----------------+
@@ -82,14 +90,15 @@ for  several types  of Boost  archives as  well as  class registration
 
 ```
 
-Several linkage schemes are considered through various test programs.
+Several  linkage schemes  are considered  with various  test programs.
 The generated Boost archive files use the XML format.
 
 This demo has been tested under Linux  but should work on any other OS
-with a descent C++ compiler and a Boost/Serialization installation.
+with a descent  C++ compiler and Boost/Serialization  installed on the
+system.
 
 Simple shell  scripts (for Linux)  are provided  to build and  run the
-test programs.
+test programs (sorry, no CMake stuff here!).
 
 ## Requirements
 
@@ -100,26 +109,27 @@ with gcc 4.8.4 and system Boost/Serialization library version 1.54.
 ## Shared library libXY(.so)
 
 The  ``libXY.so``  (namespace  ``xy``)  shared  library  contains  the
-definitions of serializable  classes ``xy::X``, ``xy::Y``, ``xy::A``  and ``xy::B`` as
-well  as instantiated  serialization code  and registration  code (for
-class ``xy::B``) with regards of Boost XML and text archives.
+definitions  of serializable  classes ``xy::X``,  ``xy::Y``, ``xy::A``
+and  ``xy::B``   as  well  as  instantiated   serialization  code  and
+registration code (for class ``xy::B``)  with regards of Boost XML and
+text archives.
 
 ### Classes
 
-  * Class    ``xy::X``    :   ``X.hpp``,    ``X.cpp``,    ``X-serial.ipp``
-    (implementation of templatized serialization method).
-  * Class ``xy::Y`` with an attribute of type ``xy::X``: ``Y.hpp``, ``Y.cpp``,
-    ``Y-serial.ipp``  (implementation   of  templatized  serialization
-    method).
-  * Class   ``xy::A``   (polymorphic   class)  :   ``A.hpp``,   ``A.cpp``,
-    ``A-serial.ipp``  (implementation   of  templatized  serialization
-    method).
-  * Class ``xy::B`` (inherited from ``xy::A``)  : ``B.hpp`` (with export key),
-    ``B.cpp``,   ``B-serial.ipp``   (implementation   of   templatized
+  * Class   ``xy::X``   :   ``X.hpp``,   ``X.cpp``,   ``X-serial.ipp``
+    (implementation of the templatized serialization method).
+  * Class ``xy::Y``  with an  attribute of type  ``xy::X``: ``Y.hpp``,
+    ``Y.cpp``,  ``Y-serial.ipp``  (implementation of  the  templatized
     serialization method).
-  * Instantiation  of serialization  code  for  classes ``xy::X``,  ``xy::Y``,
-    ``xy::A``,    ``xy::B``   and    class   ``xy::B``    registration   (export):
-    ``serial_xy_ab.cpp``.
+  * Class  ``xy::A``  (polymorphic   class)  :  ``A.hpp``,  ``A.cpp``,
+    ``A-serial.ipp`` (implementation of  the templatized serialization
+    method).
+  * Class  ``xy::B``  (inherited  from ``xy::A``)  :  ``B.hpp``  (with
+    export  key), ``B.cpp``,  ``B-serial.ipp`` (implementation  of the
+    templatized serialization method).
+  * Instantiation  of   serialization  code  for   classes  ``xy::X``,
+    ``xy::Y``, ``xy::A``,  ``xy::B`` and class  ``xy::B`` registration
+    (export): ``serial_xy_ab.cpp``.
 
 ### Test programs
 
@@ -188,9 +198,9 @@ $ ./utilities/build.sh
 ```
 
 
- * ``utilities/run.sh`` :  Run test  programs. Each  executable produces  an XML
-   archive  file which  contains  serialized object  of the  different
-   classes implemented from both libraries.
+ * ``utilities/run.sh`` : Run test  programs. Each executable produces
+   an  XML  archive  file  which contains  serialized  object  of  the
+   different classes implemented from both libraries.
 
    From the base source directory, run:
 
@@ -198,7 +208,8 @@ $ ./utilities/build.sh
 $ ./utilities/run.sh
 ```
 
- * ``utilities/clean.sh`` : Clean the working files (binaries, archive files).
+ * ``utilities/clean.sh`` : Clean the working files (binaries, archive
+   files).
 
    From the base source directory, run:
 
