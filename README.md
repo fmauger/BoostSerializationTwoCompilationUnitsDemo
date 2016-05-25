@@ -1,12 +1,12 @@
-Title:       C++ classes from two compilation units (shared libraries) with Boost/Serialization support
-Author:      F.Mauger
-Email:       mauger@lpccaen.in2p3.fr
-Affiliation: Université de Caen Normandie, LPC Caen (CNRS/IN2P3)
-Copyright :  Creative Commons BY-NC-SA (README file and C++ code)
-Date:        2016-05-25
-Keywords:    Boost,Serialization,Compilation units
+# Boost Serialization with Two Compilation Units
 
-# BoostSerializationTwoCompilationUnitsDemo
+A Demo With C++ classes from two compilation units (shared libraries) with Boost/Serialization support:
+
+* Author:      F.Mauger
+* Affiliation: Université de Caen Normandie, LPC Caen (CNRS/IN2P3)
+* Copyright :  Creative Commons BY-NC-SA (this README file and C++ code)
+* Date:        2016-05-25
+* Keywords:    Boost,Serialization,Compilation units
 
 ## Introduction
 
