@@ -229,3 +229,8 @@ $ make
 $ ls XY/ Z/ Plugin/
 $ make test
 ```
+
+By default, the CMake ``find_package(Boost ...)`` function will search for
+a system installation of the Boost library
+from the ``/usr`` directory. This can be changed with the ``-DBOOST_ROOT=...``
+variable.
