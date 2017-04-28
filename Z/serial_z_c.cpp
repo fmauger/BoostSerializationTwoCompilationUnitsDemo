@@ -9,8 +9,8 @@
 #include <boost/archive/xml_oarchive.hpp>
 
 // Ourselves:
-#include <Z/Z-serial.ipp>
-#include <Z/C-serial.ipp>
+#include <Z/Z-serial.hpp>
+#include <Z/C-serial.hpp>
 
 // Instantiate serialize methods for all supported archives:
 

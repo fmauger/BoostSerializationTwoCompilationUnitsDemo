@@ -18,7 +18,7 @@ namespace xy {
 
   std::ostream & operator<<(std::ostream & out_, const A & a_)
   {
-    out_ << "{val=" << a_._val_ << '}';
+    out_ << "xy::A@{val=" << a_._val_ << '}';
     return out_;
   }
 

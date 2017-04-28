@@ -19,7 +19,7 @@ namespace z {
 
   std::ostream & operator<<(std::ostream & out_, const C & c_)
   {
-    out_ << "{val=" << c_.val()
+    out_ << "z::C@{val=" << c_.val()
          << ";val2=" << c_.val2()
          << ";val3=" << c_.val3()
          << '}';

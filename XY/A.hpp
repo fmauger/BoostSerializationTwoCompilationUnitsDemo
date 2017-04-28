@@ -32,8 +32,4 @@ namespace xy {
 
 }
 
-// No need to register/export the base class:
-// #include <boost/serialization/export.hpp>
-// BOOST_CLASS_EXPORT_KEY2(xy::A, "xy::A")
-
 #endif // XY_A_HPP

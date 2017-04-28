@@ -9,10 +9,10 @@
 #include <boost/archive/xml_oarchive.hpp>
 
 // Ourselves:
-#include <XY/X-serial.ipp>
-#include <XY/Y-serial.ipp>
-#include <XY/A-serial.ipp>
-#include <XY/B-serial.ipp>
+#include <XY/X-serial.hpp>
+#include <XY/Y-serial.hpp>
+#include <XY/A-serial.hpp>
+#include <XY/B-serial.hpp>
 
 // Instantiate serialize methods for all supported archives:
 template void xy::X::serialize(boost::archive::polymorphic_iarchive &, const unsigned int);
@@ -35,8 +35,6 @@ template void xy::A::serialize(boost::archive::text_iarchive &, const unsigned i
 template void xy::A::serialize(boost::archive::text_oarchive &, const unsigned int);
 template void xy::A::serialize(boost::archive::xml_iarchive &, const unsigned int);
 template void xy::A::serialize(boost::archive::xml_oarchive &, const unsigned int);
-// No need to register/export the base polymorphic class:
-// BOOST_CLASS_EXPORT_IMPLEMENT(xy::A)
 
 template void xy::B::serialize(boost::archive::polymorphic_iarchive &, const unsigned int);
 template void xy::B::serialize(boost::archive::polymorphic_oarchive &, const unsigned int);
