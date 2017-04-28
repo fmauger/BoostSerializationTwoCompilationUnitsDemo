@@ -1,7 +1,6 @@
-# Boost Serialization with Two Compilation Units
+# Boost Serialization with (More Than) Two Compilation Units
 
-A demo with C++ classes  from two compilation units (shared libraries)
-with Boost/Serialization support:
+A Boost/Serialization demo with C++ classes  from several compilation units (shared libraries):
 
 * Author:      F.Mauger
 * Affiliation: Université de Caen Normandie, LPC Caen (CNRS/IN2P3)
@@ -24,11 +23,11 @@ for details).
 
 Two use cases are considered:
 
-1)  Simple class  ``xy::Y``  with an  attribute  (composition) of  the
-   simpler class  ``xy::X`` in the  first library (``libXY``).  Class  ``z::Z`` in
-   the second  library (``libZ``) with a class  ``xy::Y`` attribute (composition)
-   and  a  class  ``xy::X``  attribute (composition)  from  the  first
-   library.
+1)  Simple class  ``xy::Y``  with an  attribute of  the
+   class  ``xy::X`` in the  first library (``libXY``).  Class  ``z::Z`` in
+   the second  library (``libZ``) with a class  ``xy::X`` attribute
+   and  a  class  ``xy::Y``  attribute  from  the  first
+   library (``libXY``).
 
 ```
     +-----------------+
@@ -66,9 +65,9 @@ Two use cases are considered:
     +-----------------+
     | /to_string/     |
     +-----------------+
-		    ^     ^
+            ^     ^
 inheritance |     |
-			|     +--------------------------------+
+            |     +--------------------------------+
             |                                      |
     +-----------------+                            |
     |    /xy::B/      |                            |
@@ -91,31 +90,33 @@ inheritance |                                      |
     +-----------------+                            |
                                                    |
             +--------------------------------------+
-	--------|-----------------------------------
+    --------|-----------------------------------
             |       Third shared lib (libPlugin)
 inheritance |
     +-----------------+
     |    plugin::P    |
     +-----------------+
     | val2 : uint32_t |
-	+-----------------+
+    +-----------------+
 
 ```
 
-Various  test programs are provided to test (de)serialization.
-The generated Boost archive files use the XML format.
+Various  test programs are provided to test (de)serialization of
+the classes. Here the XML Boost archive format is used.
 
 This demo has been tested under Linux  but should work on any other OS
 with a descent  C++ compiler and Boost/Serialization  installed on the
 system.
 
-A CMake script is provided to build the full chain of software (DLLs and test executable).
+A CMake script is provided to build the full chain of software on Linux (DLLs and test executable).
 
 ## Requirements
 
-These examples  have been  successfully tested  on:
+These examples  have been  successfully tested  on Linux  Ubuntu 16.04 with :
 
-  * Linux  Ubuntu 16.04 with gcc 5.4.0 and system Boost/Serialization library versions 1.58 and 1.60.
+	* gcc 5.4.0
+	* Boost/Serialization library versions 1.58 (system installation on ``/usr``) and 1.60.
+	* CMake 3.5.1
 
 ## Shared library libXY(.so)
 
@@ -144,24 +145,10 @@ text archives.
 
 ### Test programs
 
-  * ``XY/testing/test_X.cxx``   :   serialization   of  class   ``xy::X``   (embedded
-    serialization code).
-  * ``XY/testing/test_X_2.cxx`` :  serialization of  class ``xy::X`` with  linkage to
-    pre-instantiated  serialization   (serialization  code   from  the
-    binary modules or shared library).
-  * ``XY/testing/test_Y.cxx``   :   serialization   of  class   ``xy::Y``   (embedded
-    serialization code).
-  * ``XY/testing/test_Y_2.cxx``:  serialization of  class ``xy::Y``  with linkage  to
-    pre-instantiated     serialization    and     registration    code
-    (serialization code from the binary modules or the shared library).
+  * ``XY/testing/test_X.cxx``   :   serialization   of  class   ``xy::X``.
+  * ``XY/testing/test_Y.cxx``   :   serialization   of  class   ``xy::Y``.
   * ``XY/testing/test_AB.cxx`` :  serialization of pointers to  objects (``xy::A`` or
-    ``xy::B``)   inherited   from   polymorphic  class   ``xy::A``   (embedded
-    serialization/registration code).
-  * ``XY/testing/test_AB_2.cxx`` : serialization of pointers to objects (``xy::A`` or
-    ``xy::B``)     inherited     from      polymorphic     class     ``xy::A``
-    (serialization/registration code  from the  binary modules  or the
-    shared library).y
-
+    ``xy::B``)   inherited   from   polymorphic  class   ``xy::A``.
 
 ## Shared library libZ(.so)
 
@@ -169,6 +156,7 @@ The  ``libZ.so``   (namespace  ``z``)  shared  library   contains  the
 definitions  of  serializable  classes  ``z::Z`` and  ``z::C``  as  well  as
 instantiated  serialization  code  and registration  code  (for  class
 ``z::C``) with regards of Boost XML and text archives.
+The ``libZ.so``  DLL is explicitely linked to the ``libXY.so`` DLL.
 
 ### Classes
 
@@ -181,19 +169,9 @@ instantiated  serialization  code  and registration  code  (for  class
 
 ### Test programs
 
-  * ``Z/testing/test_Z.cxx``   :   serialization   of  class   ``z::Z``   (embedded
-    serialization code).
-  * ``Z/testing/test_Z_2.cxx`` :  serialization of  class ``z::Z`` with  linkage to
-    pre-instantiated serialization (serialization code from the binary
-    modules or the shared library).
+  * ``Z/testing/test_Z.cxx``   :   serialization   of  class   ``z::Z``.
   * ``Z/testing/test_C.cxx``  : serialization  of  pointers  to objects  (``xy::A``,
-    ``xy::B`` or  ``z::C``) inherited from polymorphic  class ``xy::A`` (embedded
-    serialization/registration code).
-  * ``Z/testing/test_C_2.cxx`` :  serialization of  pointers to  objects (``xy::A``,
-    ``xy::B``   or  ``z::C``)   inherited   from   polymorphic  class   ``xy::A``
-    (serialization/registration code  from the  binary modules  or the
-    shared library).
-
+    ``xy::B`` or  ``z::C``) inherited from polymorphic  class ``xy::A``.
 
 ## Shared library libPlugin(.so)
 
@@ -201,7 +179,12 @@ The  ``libPlugin.so``   (namespace  ``plugin``)  shared  library   contains  the
 definitions  of  serializable  classe  ``plugin::P``  as  well  as
 instantiated  serialization  code  and registration  code  (for  class
 ``plugin::P``) with regards of Boost XML and text archives.
-
+The ``libPlugin.so``  DLL is explicitely linked to the ``libZ.so`` DLL.
+At loading, the ``libPlugin.so`` DLL instantiates a specific object factory and register it
+from the ``libXY.so`` DLL. From this factory, it is then possible to instantiate objects
+of various types (``xy::A``, ``xy::B``,``z::C`` or ``plugin::P``) from a
+compilation unit which is only linked to the ``libXY.so`` DLL and from which the ``libPlugin.so``
+DLL has been dynamically loaded.
 
 ### Classes
 
@@ -213,11 +196,15 @@ instantiated  serialization  code  and registration  code  (for  class
 ### Test programs
 
   * ``Plugin/testing/test_Plugin.cxx`` :  use a factory for random instantiation of
-	``xy::A``, ``xy::B``, ``z::C`` and ``plugin::P`` objects and serialization through
-	shared pointers. The program is explicitely linked to the ``libPlugin.so`` DLL.
+	several ``xy::A``, ``xy::B``, ``z::C`` or ``plugin::P`` objects and serialization through
+	a vector of shared pointers. The executable is explicitely linked to the ``libPlugin.so`` DLL
+	and thus the  ``libZ.so`` and ``libXY.so`` DLLs..
   * ``Plugin/testing/test_Plugin_2.cxx`` :  use a factory for random instantiation of
 	``xy::A``, ``xy::B``, ``z::C`` and ``plugin::P`` objects and serialization through
-	shared pointers. The ``libPlugin.so`` DLL is loaded dynamically by the executable.
+	a vector of shared pointers.  The executable is only explicitely linked to the ``libXY.so`` DLL.
+	The ``libPlugin.so`` DLL is loaded dynamically by the executable at runtime which makes
+	possible the serialization of random objects of type ``z::C`` and ``plugin::P`` thanks
+	to export code implemented in both ``libZ.so`` and ``libPlugin.so`` DLLs.
 
 
 ## Building the demo
@@ -229,38 +216,6 @@ $ mkdir _build.d
 $ cd _build.d
 $ cmake [-DBOOST_ROOT=/path/to/boost/installation] ..
 $ make
-$ make test
 $ ls XY/ Z/ Plugin/
-```
-
-## Utilities
-
-Shell scripts provided to build and test the code:
-
-* ``utilities/build.sh``  : Build  binary  modules, shared  libraries and  test
-  programs.
-
-From the base source directory, run:
-
-```sh
-$ ./utilities/build.sh
-```
-
- * ``utilities/run.sh`` : Run test  programs. Each executable produces
-   an  XML  archive  file  which contains  serialized  object  of  the
-   different classes implemented from both libraries.
-
-   From the base source directory, run:
-
-```sh
-$ ./utilities/run.sh
-```
-
- * ``utilities/clean.sh`` : Clean the working files (binaries, archive
-   files).
-
-   From the base source directory, run:
-
-```sh
-$ ./utilities/clean.sh
+$ make test
 ```

@@ -25,7 +25,7 @@ int main(void)
   {
     std::ifstream file("test_X.xml");
     boost::archive::xml_iarchive ia(file);
-    xy::X x;
+    xy::X x(0);
     ia & BOOST_SERIALIZATION_NVP(x);
     std::clog << "loaded x = " << x << std::endl;
   }
