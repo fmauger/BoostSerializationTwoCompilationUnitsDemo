@@ -102,15 +102,15 @@ inheritance |
 ```
 
 Various  test programs are provided to test (de)serialization of
-the classes. Here the XML Boost archive format is used.
+the classes. Here we use the XML Boost archive format.
+
+## Requirements
 
 This demo has been tested under Linux  but should work on any other OS
 with a descent  C++ compiler and Boost/Serialization  installed on the
 system.
 
 A CMake script is provided to build the full chain of software on Linux (DLLs and test executable).
-
-## Requirements
 
 These examples  have been  successfully tested  on Linux  Ubuntu 16.04 with :
 
