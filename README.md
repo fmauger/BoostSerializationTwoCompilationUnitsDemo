@@ -167,7 +167,7 @@ The ``libZ.so``  DLL is explicitely linked to the ``libXY.so`` DLL.
   * Class ``z::Z``  with an attribute of  type ``xy::Y`` and an  attribute of
 	type ``xy::X`` : ``Z.hpp``, ``Z.cpp``, ``Z-serial.hpp``.
   * Class ``z::C`` (inherited from ``xy::B``)  : ``C.hpp`` (with export key),
-    ``C.cpp``, ``C-serial.ipp``.
+    ``C.cpp``, ``C-serial.hpp``.
   * Instantiation of serialization code  for classes ``z::Z``, ``z::C``, and
     class ``z::C`` registration (export): ``serial_z_c.cpp``.
 
