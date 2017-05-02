@@ -195,12 +195,12 @@ The ``libZ.so``  DLL is explicitely linked to the ``libXY.so`` DLL.
 ### Shared library libPlugin(.so)
 
 The  ``libPlugin.so``   (namespace  ``plugin``)  shared  library   contains  the
-definitions  of  serializable  classe  ``plugin::P``  as  well  as
-instantiated  serialization  code  and registration  code  (for  class
+definitions  of  serializable  class  ``plugin::P``  as  well  as
+instantiated  serialization  and registration  code  (for  class
 ``plugin::P``) with regards of Boost XML and text archives.
 The ``libPlugin.so``  DLL is explicitely linked to the ``libZ.so`` DLL.
 At loading, the ``libPlugin.so`` DLL instantiates a specific object factory and register it
-from the ``libXY.so`` DLL. From this factory, it is then possible to instantiate objects
+in the ``libXY.so`` DLL. From this factory, it is then possible to randomly instantiate objects
 of various types (``xy::A``, ``xy::B``,``z::C`` or ``plugin::P``) from a
 compilation unit which is only linked to the ``libXY.so`` DLL and from which the ``libPlugin.so``
 DLL has been dynamically loaded.
@@ -216,7 +216,7 @@ DLL has been dynamically loaded.
 	instantiated from this factory.
   * Class  ``plugin::init_lib``  : provide a singleton for initialization of the library at loading.
 	A 	``plugin::Plugin`` instance is automatically registered in the ``xy:plugin_deck`` singleton
-	from the ``libXY.so`` DLL.
+	in the ``libXY.so`` DLL.
 
 #### Test programs
 
