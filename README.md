@@ -1,6 +1,6 @@
 # Boost Serialization with (More Than) Two Compilation Units
 
-A Boost/Serialization demo with C++ classes  from several compilation units (shared libraries):
+A Boost/Serialization demo for C++ classes implemented from several compilation units (shared libraries):
 
 * Author:      F.Mauger
 * Affiliation: Université de Caen Normandie, LPC Caen (CNRS/IN2P3)
