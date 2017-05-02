@@ -15,12 +15,18 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
 endif()
 
 add_definitions("--std=c++11")
+option(BSTCUD_WITH_EOS "Support for eos portable binary archives" OFF)
 
 # - Boost
 set(Boost_NO_BOOST_CMAKE ON)
 find_package(Boost 1.58 REQUIRED serialization)
 
 include_directories(${PROJECT_SOURCE_DIR})
+include_directories(${PROJECT_SOURCE_DIR}/eos_portable_archive/5.1)
+include_directories(${PROJECT_BINARY_DIR})
+include_directories(${PROJECT_BINARY_DIR}/XY)
+include_directories(${PROJECT_BINARY_DIR}/Z)
+include_directories(${PROJECT_BINARY_DIR}/Plugin)
 enable_testing()
 add_subdirectory(XY)
 add_subdirectory(Z)

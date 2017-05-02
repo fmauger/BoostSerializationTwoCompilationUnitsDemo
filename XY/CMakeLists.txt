@@ -1,5 +1,8 @@
 
+configure_file(config.hpp.in ${CMAKE_CURRENT_BINARY_DIR}/config.hpp @ONLY)
+
 add_library(XY SHARED
+  ${CMAKE_CURRENT_BINARY_DIR}/config.hpp
   X.hpp
   X.cpp
   X-serial.hpp
