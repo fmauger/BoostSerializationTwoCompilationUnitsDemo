@@ -6,10 +6,17 @@ A Boost/Serialization demo with C++ classes  from several compilation units (sha
 * Affiliation: Université de Caen Normandie, LPC Caen (CNRS/IN2P3)
 * Copyright :  Creative Commons BY-NC-SA (this README file and C++ code)
 * Date:        2016-05-25
-* Update:      2017-04-29
+* Update:      2017-05-02
 * Keywords:    Boost,Serialization,Compilation units
 
 ## Introduction
+
+This demo has been  created as a test bench of  some advanced usage of
+the Boost  Serialization Library on  some systems of  interest (mostly
+computers running  Linux for  computing, simulation and  data analysis
+for  experimental  physics).  It  is  provided  as  is, first  for  my
+personal usage  and also  in the  hope it could  help someone  else to
+understand and setup Boost based serialization features in his/her own code.
 
 This  set   of  sample   C++  files   illustrates  how   to  implement
 serialization   functionalities,   through   the   Boost/Serialization
@@ -18,10 +25,10 @@ libraries with dependency relationship.   The libraries  instantiate
 dedicated templatized  code for  serialization of classes  for several
 types  of Boost  archives  as well  as  class registration  (*export*)
 mechanism                                                         (see
-the [Boost/Serialization documentation](http://www.boost.org/doc/libs/1_61_0/libs/serialization/doc/index.html)
+the [Boost/Serialization documentation](http://www.boost.org/doc/libs/1_60_0/libs/serialization/doc/index.html)
 for details).
 
-Two use cases are considered:
+Several use cases are considered:
 
 1)  Plain serialization of simple classes:
 
@@ -104,6 +111,9 @@ inheritance |
     +-----------------+
 
 ```
+
+3) Serialization of objects only known from a plugin library, dynamically loaded at runtime
+from a compilation unit (executable) that does not know about the class of the serialized objects.
 
 Various  test programs are provided to test (de)serialization of
 the classes. We use the official *XML Boost archive* format. Optionally the use of
