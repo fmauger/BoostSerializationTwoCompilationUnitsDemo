@@ -23,7 +23,9 @@ for details).
 
 Two use cases are considered:
 
-1)  Simple class  ``xy::Y``  with an  attribute of  the
+1)  Plain serialization of simple classes:
+
+   Simple class  ``xy::Y``  with an  attribute of  the
    class  ``xy::X`` in the  first library (``libXY``).  Class  ``z::Z`` in
    the second  library (``libZ``) with a class  ``xy::X`` attribute
    and  a  class  ``xy::Y``  attribute  from  the  first
@@ -52,7 +54,9 @@ Two use cases are considered:
     +-----------------+
 ```
 
-2) Class ``xy::B``  inherited from  polymorphic class  ``xy::A`` in  the first
+2) Serialization of polymorphic classes through pointer to a base class:
+
+   Class ``xy::B``  inherited from  polymorphic class  ``xy::A`` in  the first
    library (``libXY``); class  ``z::C`` in  the second  library (``libZ``) inherited  from class
    ``xy::B`` from the first library, class  ``plugin::P`` in  the third  library (``libPlugin``) inherited  from class
    ``xy::A`` from the first library.
@@ -102,7 +106,8 @@ inheritance |
 ```
 
 Various  test programs are provided to test (de)serialization of
-the classes. Here we use the XML Boost archive format.
+the classes. We use the official *XML Boost archive* format. Optionally the use of
+*EOS portable binary archives* (version 5.1) can be activated.
 
 ## Requirements
 
@@ -219,12 +224,36 @@ DLL has been dynamically loaded.
 
 ## Building the demo
 
+### Options ###
+
+The demo supports two optional parameters:
+
+- ``BOOST_ROOT`` : The path where the Boost libraries are installed. For a system installation on Linux, this should be ``/usr`` and automatically found by CMake.
+
+  Example: to target a specific Boost installation:
+
+```sh
+$ cmake ... -DBOOST_ROOT=/opt/sw/Boost/install-1.60 ...
+```
+
+- ``BSTCUD_WITH_EOS`` : This flag enables support and test of the EOS Portable Binary Archives (version 5.1,
+  by Christian Pfligersdorffer). By default it is inhibited.
+
+  Example:
+
+```sh
+$ cmake ... -DBSTCUD_WITH_EOS=ON ...
+```
+
+
+### Configure and build###
+
 From the source directory:
 
 ```sh
 $ mkdir _build.d
 $ cd _build.d
-$ cmake [-DBOOST_ROOT=/path/to/boost/installation] ..
+$ cmake [-DBOOST_ROOT=/path/to/boost/installation] [-DBSTCUD_WITH_EOS=ON] ..
 $ make
 $ ls XY/ Z/ Plugin/
 $ make test
