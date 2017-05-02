@@ -275,18 +275,23 @@ $ cmake ... -DBSTCUD_WITH_EOS=ON ...
 
 ### Configure and build
 
-From the source directory:
-
+1. from the source directory, you should first create a build directory and cd in it:
 ```sh
 $ mkdir _build.d
 $ cd _build.d
+```
+2. then configure and build the demo:
+```sh
 $ cmake [-DBOOST_ROOT=/path/to/boost/installation] [-DBSTCUD_WITH_EOS=ON] ..
 $ make
 $ ls XY/ Z/ Plugin/
+```
+	By default, the CMake ``find_package(Boost ...)`` function will search for
+	a system installation of the Boost library
+	from the ``/usr`` directory. This can be changed with the ``-DBOOST_ROOT=...``
+	variable.
+
+3. finally run the test programs:
+```sh
 $ make test
 ```
-
-By default, the CMake ``find_package(Boost ...)`` function will search for
-a system installation of the Boost library
-from the ``/usr`` directory. This can be changed with the ``-DBOOST_ROOT=...``
-variable.
