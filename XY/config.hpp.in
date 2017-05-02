@@ -1,0 +1,11 @@
+#ifndef XY_CONFIG_HPP
+#define XY_CONFIG_HPP
+
+#cmakedefine01 BSTCUD_WITH_EOS
+// #if BSTCUD_WITH_EOS == 1
+// #warning "[info] Built with eos archives."
+// #else
+// #warning "[info] Built without eos archives."
+// #endif
+
+#endif // XY_CONFIG_HPP
