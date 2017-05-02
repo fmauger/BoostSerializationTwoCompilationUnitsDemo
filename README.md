@@ -224,7 +224,7 @@ DLL has been dynamically loaded.
 
 ## Building the demo
 
-### Options ###
+### Options
 
 The demo supports two optional parameters:
 
@@ -246,7 +246,7 @@ $ cmake ... -DBSTCUD_WITH_EOS=ON ...
 ```
 
 
-### Configure and build###
+### Configure and build
 
 From the source directory:
 
