@@ -286,10 +286,10 @@ $ cmake [-DBOOST_ROOT=/path/to/boost/installation] [-DBSTCUD_WITH_EOS=ON] ..
 $ make
 $ ls XY/ Z/ Plugin/
 ```
-	By default, the CMake ``find_package(Boost ...)`` function will search for
-	a system installation of the Boost library
-	from the ``/usr`` directory. This can be changed with the ``-DBOOST_ROOT=...``
-	variable.
+   By default, the CMake ``find_package(Boost ...)`` function will search for
+   a system installation of the Boost library
+   from the ``/usr`` directory. This can be changed with the ``-DBOOST_ROOT=...``
+   variable.
 
 3. finally run the test programs:
 ```sh
