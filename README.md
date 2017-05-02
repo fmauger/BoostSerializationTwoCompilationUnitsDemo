@@ -158,9 +158,9 @@ text archives.
     ``xy::Y``, ``xy::A``,  ``xy::B`` and class  ``xy::B`` registration
     (export): ``serial_xy_ab.cpp``.
   * Abstract class  ``xy::BasePlugin``  :  base class for object factory classes.
-    Object instantiated from such factories must inherit the ``xy::A`` class.
+    Objects instantiated from such factories must inherit the ``xy::A`` class.
   * Class  ``xy::plugin_deck``  :  provide a singleton which points to an object factory instance.
-    Object instantiated from such factories inherit the ``xy::A`` class.
+    Objects instantiated from such factories inherit the ``xy::A`` class.
 
 #### Test programs
 
@@ -212,7 +212,7 @@ DLL has been dynamically loaded.
   * Instantiation of serialization code  for classes ``plugin::P`` and
 	class registration (export): ``serial_plugin_p.cpp``.
   * Class  ``plugin::Plugin``  :  object factory class.
-	Object of types ``xy::A``, ``xy::B``,``z::C`` or ``plugin::P`` are randomly
+	Objects of types ``xy::A``, ``xy::B``,``z::C`` or ``plugin::P`` are randomly
 	instantiated from this factory.
   * Class  ``plugin::init_lib``  : provide a singleton for initialization of the library at loading.
 	A 	``plugin::Plugin`` instance is automatically registered in the ``xy:plugin_deck`` singleton
