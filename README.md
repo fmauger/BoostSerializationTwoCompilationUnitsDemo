@@ -9,6 +9,8 @@ A Boost/Serialization demo with C++ classes  from several compilation units (sha
 * Update:      2017-05-02
 * Keywords:    Boost,Serialization,Compilation units
 
+[[toc]]
+
 ## Introduction
 
 This demo has been  created as a test bench of  some advanced usage of
