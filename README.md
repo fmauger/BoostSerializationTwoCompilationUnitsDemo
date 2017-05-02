@@ -32,11 +32,11 @@ features in his/her own code.
 
 This  set   of  sample   C++  files   illustrates  how   to  implement
 serialization   functionalities,   through   the   Boost/Serialization
-library,  in   several  (simple)  classes  defined   from  three  shared
+library,  in   several  (simple)  toy classes  defined   from  three  shared
 libraries with dependency relationship.   The libraries  instantiate
-dedicated templatized  code for  serialization of classes  for several
-types  of Boost  archives  as well  as  class registration  (*export*)
-mechanism                                                         (see
+dedicated templatized  code for  the serialization of the provided classes
+(Boost XML/txt archives),  as well  as registration  (*export*)
+mechanism  for polymorphic   classes  (see
 the [Boost/Serialization documentation](http://www.boost.org/doc/libs/1_60_0/libs/serialization/doc/index.html)
 for details).
 
