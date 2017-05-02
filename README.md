@@ -15,8 +15,9 @@ This demo has been  created as a test bench of  some advanced usage of
 the Boost  Serialization Library on  some systems of  interest (mostly
 computers running  Linux for  computing, simulation and  data analysis
 for  experimental  physics).  It  is  provided  as  is, first  for  my
-personal usage  and also  in the  hope it could  help someone  else to
-understand and setup Boost based serialization features in his/her own code.
+personal usage and experimentation but also  in the hope it could help
+someone  else  to  understand  and  setup  Boost  based  serialization
+features in his/her own code.
 
 This  set   of  sample   C++  files   illustrates  how   to  implement
 serialization   functionalities,   through   the   Boost/Serialization
@@ -112,8 +113,8 @@ inheritance |
 
 ```
 
-3) Serialization of objects only known from a plugin library, dynamically loaded at runtime
-from a compilation unit (executable) that does not know about the class of the serialized objects.
+3) Serialization of polymorphic objects only known from a plugin library, dynamically loaded at runtime
+from a compilation unit (executable) that does not know about the class(es) of the serialized objects.
 
 Various  test programs are provided to test (de)serialization of
 the classes. We use the official *XML Boost archive* format. Optionally the use of
