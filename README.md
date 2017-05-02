@@ -248,6 +248,9 @@ These examples  have been  successfully tested  on Linux  Ubuntu 16.04 with :
 
 ## Building the demo
 
+The demo uses CMake (>= 3.3) as its build system.
+
+
 ### Options
 
 The demo supports two optional parameters:
