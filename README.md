@@ -9,7 +9,14 @@ A Boost/Serialization demo with C++ classes  from several compilation units (sha
 * Update:      2017-05-02
 * Keywords:    Boost,Serialization,Compilation units
 
-[[toc]]
+## Table of contents
+
+* [Introduction](#introduction)
+* [Description](#description)
+* [Contents of the demo](#contents-of-the-demo)
+* [Requirements](#requirements)
+* [Building the demo](#building-the-demo)
+
 
 ## Introduction
 
@@ -30,6 +37,8 @@ types  of Boost  archives  as well  as  class registration  (*export*)
 mechanism                                                         (see
 the [Boost/Serialization documentation](http://www.boost.org/doc/libs/1_60_0/libs/serialization/doc/index.html)
 for details).
+
+## Description
 
 Several use cases are considered:
 
@@ -122,21 +131,9 @@ Various  test programs are provided to test (de)serialization of
 the classes. We use the official *XML Boost archive* format. Optionally the use of
 *EOS portable binary archives* (version 5.1) can be activated.
 
-## Requirements
+## Contents of the demo
 
-This demo has been tested under Linux  but should work on any other OS
-with a descent  C++ compiler and Boost/Serialization  installed on the
-system.
-
-A CMake script is provided to build the full chain of software on Linux (DLLs and test executable).
-
-These examples  have been  successfully tested  on Linux  Ubuntu 16.04 with :
-
-	* gcc 5.4.0
-	* Boost/Serialization library versions 1.58 (system installation on ``/usr``) and 1.60.
-	* CMake 3.5.1
-
-## Shared library libXY(.so)
+### Shared library libXY(.so)
 
 The  ``libXY.so``  (namespace  ``xy``)  shared  library  contains  the
 definitions  of serializable  classes ``xy::X``,  ``xy::Y``, ``xy::A``
@@ -144,7 +141,7 @@ and  ``xy::B``   as  well  as  instantiated   serialization  code  and
 registration code (for class ``xy::B``)  with regards of Boost XML and
 text archives.
 
-### Classes
+#### Classes
 
   * Class   ``xy::X``   :   ``X.hpp``,   ``X.cpp``,   ``X-serial.hpp``
     (implementation of the templatized serialization method).
@@ -165,14 +162,14 @@ text archives.
   * Class  ``xy::plugin_deck``  :  provide a singleton which points to an object factory instance.
     Object instantiated from such factories inherit the ``xy::A`` class.
 
-### Test programs
+#### Test programs
 
   * ``XY/testing/test_X.cxx``   :   serialization   of  class   ``xy::X``.
   * ``XY/testing/test_Y.cxx``   :   serialization   of  class   ``xy::Y``.
   * ``XY/testing/test_AB.cxx`` :  serialization of pointers to  objects (``xy::A`` or
     ``xy::B``)   inherited   from   polymorphic  class   ``xy::A``.
 
-## Shared library libZ(.so)
+### Shared library libZ(.so)
 
 The  ``libZ.so``   (namespace  ``z``)  shared  library   contains  the
 definitions  of  serializable  classes  ``z::Z`` and  ``z::C``  as  well  as
@@ -180,7 +177,7 @@ instantiated  serialization  code  and registration  code  (for  class
 ``z::C``) with regards of Boost XML and text archives.
 The ``libZ.so``  DLL is explicitely linked to the ``libXY.so`` DLL.
 
-### Classes
+#### Classes
 
   * Class ``z::Z``  with an attribute of  type ``xy::Y`` and an  attribute of
 	type ``xy::X`` : ``Z.hpp``, ``Z.cpp``, ``Z-serial.hpp``.
@@ -189,13 +186,13 @@ The ``libZ.so``  DLL is explicitely linked to the ``libXY.so`` DLL.
   * Instantiation of serialization code  for classes ``z::Z``, ``z::C``, and
     class ``z::C`` registration (export): ``serial_z_c.cpp``.
 
-### Test programs
+#### Test programs
 
   * ``Z/testing/test_Z.cxx``   :   serialization   of  class   ``z::Z``.
   * ``Z/testing/test_C.cxx``  : serialization  of  pointers  to objects  (``xy::A``,
     ``xy::B`` or  ``z::C``) inherited from polymorphic  class ``xy::A``.
 
-## Shared library libPlugin(.so)
+### Shared library libPlugin(.so)
 
 The  ``libPlugin.so``   (namespace  ``plugin``)  shared  library   contains  the
 definitions  of  serializable  classe  ``plugin::P``  as  well  as
@@ -208,7 +205,7 @@ of various types (``xy::A``, ``xy::B``,``z::C`` or ``plugin::P``) from a
 compilation unit which is only linked to the ``libXY.so`` DLL and from which the ``libPlugin.so``
 DLL has been dynamically loaded.
 
-### Classes
+#### Classes
 
   * Class ``plugin::P`` (inherited from ``xy::A``)  : ``P.hpp`` (with export key),
 	``P.cpp``, ``P-serial.hpp``.
@@ -221,7 +218,7 @@ DLL has been dynamically loaded.
 	A 	``plugin::Plugin`` instance is automatically registered in the ``xy:plugin_deck`` singleton
 	from the ``libXY.so`` DLL.
 
-### Test programs
+#### Test programs
 
   * ``Plugin/testing/test_Plugin.cxx`` :  use a factory for random instantiation of
 	several ``xy::A``, ``xy::B``, ``z::C`` or ``plugin::P`` objects and serialization through
@@ -233,6 +230,20 @@ DLL has been dynamically loaded.
 	The ``libPlugin.so`` DLL is loaded dynamically by the executable at runtime which makes
 	possible the serialization of random objects of type ``z::C`` and ``plugin::P`` thanks
 	to export code implemented in both ``libZ.so`` and ``libPlugin.so`` DLLs.
+
+## Requirements
+
+This demo has been tested under Linux  but should work on any other OS
+with a descent  C++ compiler and Boost/Serialization  installed on the
+system.
+
+A CMake script is provided to build the full chain of software on Linux (DLLs and test executable).
+
+These examples  have been  successfully tested  on Linux  Ubuntu 16.04 with :
+
+	* gcc 5.4.0
+	* Boost/Serialization library versions 1.58 (system installation on ``/usr``) and 1.60.
+	* CMake 3.5.1
 
 
 ## Building the demo
