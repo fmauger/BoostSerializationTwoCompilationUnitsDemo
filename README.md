@@ -22,11 +22,13 @@ A Boost/Serialization demo with C++ classes  from several compilation units (sha
 
 This demo has been  created as a test bench of  some advanced usage of
 the Boost  Serialization Library on  some systems of  interest (mostly
-computers running  Linux for  computing, simulation and  data analysis
+computers running  modern Linux used for  computing, simulation and  data analysis
 for  experimental  physics).  It  is  provided  as  is, first  for  my
 personal usage and experimentation but also  in the hope it could help
 someone  else  to  understand  and  setup  Boost  based  serialization
 features in his/her own code.
+
+## Description
 
 This  set   of  sample   C++  files   illustrates  how   to  implement
 serialization   functionalities,   through   the   Boost/Serialization
@@ -37,8 +39,6 @@ types  of Boost  archives  as well  as  class registration  (*export*)
 mechanism                                                         (see
 the [Boost/Serialization documentation](http://www.boost.org/doc/libs/1_60_0/libs/serialization/doc/index.html)
 for details).
-
-## Description
 
 Several use cases are considered:
 
